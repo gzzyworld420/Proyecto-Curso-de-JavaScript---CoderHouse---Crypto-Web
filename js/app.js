@@ -140,15 +140,10 @@ const ejecutarAcciones = () => {
           ejecutarAccion(accion);
       }
   }
-};
+}
 
-// Ejecutar la acción seleccionada
-ejecutarAcciones();
-
-
-
-
-
+// Ejecutar la acción seleccionada en DevTools
+// ejecutarAcciones();
 
 // Criptomonedas
 // class Cryptomonedas {
