@@ -128,10 +128,18 @@ const ejecutarAccion = (accion) => {
     }
 };
 
-// Función para ejecutar una acción seleccionada
+
+// Función para ejecutar múltiples acciones
 const ejecutarAcciones = () => {
-    let accion = prompt("¿Qué acción desea realizar? (comprar/vender/transferir)");
-    ejecutarAccion(accion);
+  let continuar = true;
+  while (continuar) {
+      let accion = prompt("¿Qué acción desea realizar? (comprar/vender/transferir/terminar)");
+      if (accion.toLowerCase() === "terminar") {
+          continuar = false;
+      } else {
+          ejecutarAccion(accion);
+      }
+  }
 };
 
 // Ejecutar la acción seleccionada
