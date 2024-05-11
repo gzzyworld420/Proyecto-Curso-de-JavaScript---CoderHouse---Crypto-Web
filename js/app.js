@@ -15,59 +15,129 @@ buyBtn.addEventListener('click', () => {
 });
 
 // Logica del Simulador Interactivo - Pre entrega 01
-
-// Variables globales
-let saldo = 1000; // Saldo inicial en la wallet
-const precioBitcoin = 50000; // Precio inicial del Bitcoin
-const precioEther = 3000; // Precio inicial del Ether
+// Variables globales para el saldo y criptomonedas
+let saldo = 10000;
+let bitcoin = 2;
+let ethereum = 5;
 
 // Función para comprar criptomonedas
-const comprarCriptomoneda = (monto, criptomoneda) => {
-  const precio = obtenerPrecioCriptomoneda(criptomoneda);
-  const cantidad = monto / precio;
+const comprarCriptomoneda = () => {
+    let criptomoneda = prompt("Ingrese la criptomoneda que desea comprar (Bitcoin/Ethereum):");
+    let cantidad = parseInt(prompt("Ingrese la cantidad que desea comprar:"));
 
-  if (saldo >= monto) {
-    saldo -= monto;
-    console.log(`Has comprado ${cantidad.toFixed(2)} ${criptomoneda}.`);
-  } else {
-    console.log("Saldo insuficiente para realizar la compra.");
-  }
-}
+    let costoTotal = 0;
+    if (criptomoneda === "Bitcoin") {
+        const precioBitcoin = 5000;
+        costoTotal = precioBitcoin * cantidad;
+    } else if (criptomoneda === "Ethereum") {
+        const precioEthereum = 3000;
+        costoTotal = precioEthereum * cantidad;
+    } else {
+        console.log("Criptomoneda no válida.");
+        return;
+    }
+
+    if (saldo >= costoTotal) {
+        saldo -= costoTotal;
+        if (criptomoneda === "Bitcoin") {
+            bitcoin += cantidad;
+        } else {
+            ethereum += cantidad;
+        }
+        console.log(`Has comprado ${cantidad} ${criptomoneda}(s) por un total de $${costoTotal}.`);
+    } else {
+        console.log("Saldo insuficiente para realizar la compra.");
+    }
+};
 
 // Función para vender criptomonedas
-const venderCriptomoneda = (cantidad, criptomoneda) => {
-  const precio = obtenerPrecioCriptomoneda(criptomoneda);
-  const monto = cantidad * precio;
+const venderCriptomoneda = () => {
+    let criptomoneda = prompt("Ingrese la criptomoneda que desea vender (Bitcoin/Ethereum):");
+    let cantidad = parseInt(prompt("Ingrese la cantidad que desea vender:"));
 
-  if (cantidad <= obtenerCantidadCriptomoneda(criptomoneda)) {
-    saldo += monto;
-    console.log(`Has vendido ${cantidad.toFixed(2)} ${criptomoneda}.`);
-  } else {
-    console.log("No tienes suficiente cantidad para vender.");
-  }
-}
+    let ingresoTotal = 0;
+    if (criptomoneda === "Bitcoin") {
+        const precioBitcoin = 50000;
+        ingresoTotal = precioBitcoin * cantidad;
+    } else if (criptomoneda === "Ethereum") {
+        const precioEthereum = 3000;
+        ingresoTotal = precioEthereum * cantidad;
+    } else {
+        console.log("Criptomoneda no válida.");
+        return;
+    }
 
-// Función para obtener el precio de una criptomoneda
-const obtenerPrecioCriptomoneda = (criptomoneda) => {
-  switch (criptomoneda) {
-    case "Bitcoin":
-      return precioBitcoin;
-    case "Ether":
-      return precioEther;
-    default:
-      return 0;
-  }
-}
+    if (criptomoneda === "Bitcoin") {
+        if (bitcoin >= cantidad) {
+            saldo += ingresoTotal;
+            bitcoin -= cantidad;
+            console.log(`Has vendido ${cantidad} ${criptomoneda}(s) por un total de $${ingresoTotal}.`);
+        } else {
+            console.log("No tienes suficientes criptomonedas para vender.");
+        }
+    } else if (criptomoneda === "Ethereum") {
+        if (ethereum >= cantidad) {
+            saldo += ingresoTotal;
+            ethereum -= cantidad;
+            console.log(`Has vendido ${cantidad} ${criptomoneda}(s) por un total de $${ingresoTotal}.`);
+        } else {
+            console.log("No tienes suficientes criptomonedas para vender.");
+        }
+    }
+};
 
-// Función para obtener la cantidad de una criptomoneda
-const obtenerCantidadCriptomoneda = (criptomoneda) => {
-  // Lógica para obtener la cantidad de la criptomoneda en la wallet
-  return 0;
-}
+// Función para transferir criptomonedas
+const transferirCriptomoneda = () => {
+    let criptomoneda = prompt("Ingrese la criptomoneda que desea transferir (Bitcoin/Ethereum):");
+    let cantidad = parseInt(prompt("Ingrese la cantidad que desea transferir:"));
 
-// Ejemplo de uso
-comprarCriptomoneda(500, "Bitcoin"); // Comprar 500 dólares de Bitcoin
-venderCriptomoneda(0.5, "Ether"); // Vender 0.5 Ether
+    if (criptomoneda === "Bitcoin") {
+        if (bitcoin >= cantidad) {
+            bitcoin -= cantidad;
+            console.log(`Has transferido ${cantidad} ${criptomoneda}(s) con éxito.`);
+        } else {
+            console.log("No tienes suficientes criptomonedas para transferir.");
+        }
+    } else if (criptomoneda === "Ethereum") {
+        if (ethereum >= cantidad) {
+            ethereum -= cantidad;
+            console.log(`Has transferido ${cantidad} ${criptomoneda}(s) con éxito.`);
+        } else {
+            console.log("No tienes suficientes criptomonedas para transferir.");
+        }
+    } else {
+        console.log("Criptomoneda no válida.");
+    }
+};
+
+// Función para ejecutar una acción seleccionada
+const ejecutarAccion = (accion) => {
+    switch (accion.trim()) {
+        case "comprar":
+            comprarCriptomoneda();
+            break;
+        case "vender":
+            venderCriptomoneda();
+            break;
+        case "transferir":
+            transferirCriptomoneda();
+            break;
+        default:
+            console.log(`Acción "${accion}" no válida.`);
+            break;
+    }
+};
+
+// Función para ejecutar una acción seleccionada
+const ejecutarAcciones = () => {
+    let accion = prompt("¿Qué acción desea realizar? (comprar/vender/transferir)");
+    ejecutarAccion(accion);
+};
+
+// Ejecutar la acción seleccionada
+ejecutarAcciones();
+
+
 
 
 
