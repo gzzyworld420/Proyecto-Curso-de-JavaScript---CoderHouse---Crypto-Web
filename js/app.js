@@ -28,7 +28,7 @@ const comprarCriptomoneda = (monto, criptomoneda) => {
 
   if (saldo >= monto) {
     saldo -= monto;
-    console.log(`Has comprado ${cantidad.toFixed(8)} ${criptomoneda}.`);
+    console.log(`Has comprado ${cantidad.toFixed(2)} ${criptomoneda}.`);
   } else {
     console.log("Saldo insuficiente para realizar la compra.");
   }
@@ -41,7 +41,7 @@ const venderCriptomoneda = (cantidad, criptomoneda) => {
 
   if (cantidad <= obtenerCantidadCriptomoneda(criptomoneda)) {
     saldo += monto;
-    console.log(`Has vendido ${cantidad.toFixed(8)} ${criptomoneda}.`);
+    console.log(`Has vendido ${cantidad.toFixed(2)} ${criptomoneda}.`);
   } else {
     console.log("No tienes suficiente cantidad para vender.");
   }
@@ -68,8 +68,6 @@ const obtenerCantidadCriptomoneda = (criptomoneda) => {
 // Ejemplo de uso
 comprarCriptomoneda(500, "Bitcoin"); // Comprar 500 dólares de Bitcoin
 venderCriptomoneda(0.5, "Ether"); // Vender 0.5 Ether
-
-
 
 
 
