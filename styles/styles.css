@@ -2,12 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin: 0;
+* {
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+  }
 
 body{
     background-color: #c9d6ff;
@@ -16,7 +18,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+
 }
 
 .container{
@@ -210,3 +212,103 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+
+/* Nfts + Buscador */
+.buscador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 95%;
+    margin: 0 auto;
+  }
+  #search-container {
+    margin: 1em 0;
+  }
+  #search-container input {
+    background-color: transparent;
+    width: 56%;
+    border-bottom: 2px solid #110f29;
+    padding: 1em 0.3em;
+  }
+  #search-container input:focus {
+    border-bottom-color: #6759ff;
+  }
+  #search-container button {
+    padding: 1em 2em;
+    margin-left: 1em;
+    background-color: #6759ff;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 0.5em;
+  }
+  .button-value {
+    border: 2px solid #6759ff;
+    padding: 1em 2.2em;
+    border-radius: 3em;
+    background-color: transparent;
+    color: #6759ff;
+    cursor: pointer;
+  }
+  .active {
+    background-color: #6759ff;
+    color: #ffffff;
+  }
+  #products {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 1.5em;
+    padding: 2em 0;
+  }
+  .card {
+    background-color: #ffffff;
+    max-width: 18em;
+    margin: 1em auto;
+    padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-0.5em);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  .image-container {
+    text-align: center;
+  }
+  img {
+    max-width: 100%;
+    object-fit: contain;
+    height: 15em;
+  }
+  .cardContainer {
+    padding-top: 1em;
+    color: #110f29;
+  }
+  .cardContainer h5 {
+    font-weight: 500;
+  }
+  .hide {
+    display: none;
+  }
+
+  @media screen and (max-width: 720px) {
+    img {
+      max-width: 100%;
+      object-fit: contain;
+      height: 10em;
+    }
+    .card {
+      max-width: 10em;
+      margin-top: 1em;
+    }
+    #products {
+      grid-template-columns: auto auto;
+      grid-column-gap: 1em;
+    }
+  }

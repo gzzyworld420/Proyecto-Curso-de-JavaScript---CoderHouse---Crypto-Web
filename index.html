@@ -11,17 +11,10 @@
   <title>Cryto Wallet</title>
 </head>
 <body>
-<!-- Header -->
-<!-- <header class="header">
 
-  <ul>
-    <li>Buy Crypto</li>
-    <li>Markets</li>
-    <li>Trade</li>
-    <li></li>
-  </ul>
-</header> -->
-<!-- Main -->
+<header>
+
+</header>
 
 <div class="container" id="container">
   <div class="form-container sign-up">
@@ -71,14 +64,40 @@
 </div>
 
 <br>
-<p>Ejecuta <strong>DevTools</strong>, y escribe en la consola JS la función: <strong>ejecutarAcciones()</strong></p>
+<!-- <p>Ejecuta <strong>DevTools</strong>, y escribe en la consola JS la función: <strong>ejecutarAcciones()</strong></p> -->
 
+<!-- NFTS + Buscador -->
+<div class="wrapper">
+  <div class="buscador">
+    <div id="search-container">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Search product name here.."
+      />
+      <button id="search">Search</button>
+    </div>
+    <div id="buttons">
+      <button class="button-value" onclick="filtrarProductos('all')">All</button>
+      <button class="button-value" onclick="filtrarProductos('Ape')">
+        Ape
+      </button>
+      <button class="button-value" onclick="filtrarProductos('Metaverse')">
+        Metaverse
+      </button>
+      <button class="button-value" onclick="filtrarProductos('Godness')">
+        Godness
+      </button>
+      <button class="button-value" onclick="filtrarProductos('Mocaverse')">
+        Mocaverse
+      </button>
+    </div>
+  </div>
 
-<!-- Footer -->
-<footer class="footer">
-
-</footer>
-
+  <div id="products">
+    <!-- array de productos -->
+  </div>
+</div>
 
 <!-- Scripts -->
 <script src="./js/app.js"></script>
