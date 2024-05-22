@@ -1,29 +1,5 @@
 // Proyecto: Curso de JavaScript - CoderHouse - Crypto Web
 // Autor: Ignacio Aracena - 2024
-const products = {
-    data:[
-    {id: 1, productName: 'ApeXplorer',image:'/img/ape-2.png', price: 500,category: 'Ape'},
-    {id: 2, productName: 'CosmicApe',image:'/img/ape-2.png', price: 800,category: 'Ape'},
-    {id: 3, productName: 'JungleApe',image:'/img/ape-3.png', price: 630,category: 'Ape'},
-    {id: 4, productName: 'UrbanApe',image:'/img/ape-4.avif', price: 1360,category: 'Ape'},
-    {id: 5, productName: 'CyberApe',image:'/img/ape-4.jpeg', price: 1420,category: 'Ape'},
-    {id: 6, productName: 'MetaMonarch',image:'/img/metaverseKing-1.avif', price: 320,category: 'Metaverse'},
-    {id: 7, productName: 'VirtualSovereign',image:'/img/metaverseKing-2.avif', price: 150,category: 'Metaverse'},
-    {id: 8, productName: 'KingdomMeta',image:'/img/metaverseKing-3.jpeg', price: 3400,category: 'Metaverse'},
-    {id: 9, productName: 'RulerOfRealms',image:'/img/metaverseKing-4.jpeg', price: 2200,category: 'Metaverse'},
-    {id: 10, productName: 'MetaMajesty',image:'/img/metaverseKing-5.webp', price: 950,category: 'Metaverse'},
-    {id: 11, productName: 'DivineEssence',image:'/img/godness-1.png', price: 560,category: 'Godness'},
-    {id: 12, productName: 'EtherealDeity',image:'/img/godness-2.jpeg', price: 90,category: 'Godness'},
-    {id: 13, productName: 'SacredSeraph',image:'/img/godness-3.jpeg', price: 4200,category: 'Godness'},
-    {id: 14, productName: 'CelestialGoddess',image:'/img/godness-4.jpeg', price: 5500,category: 'Godness'},
-    {id: 15, productName: 'MythicDivinity',image:'/img/godness-5.webp', price: 180,category: 'Godness'},
-    {id: 16, productName: 'MocaVoyager',image:'/img/mocaverse-1.png', price: 920,category: 'Mocaverse'},
-    {id: 17, productName: 'CosmoMoca',image:'/img/mocaverse-2.png', price: 710,category: 'Mocaverse'},
-    {id: 18, productName: 'MocaRealm',image:'/img/mocaverse-3.webp', price: 4530,category: 'Mocaverse'},
-    {id: 19, productName: 'StellarMoca',image:'/img/mocaverse-4.webp', price: 1820,category: 'Mocaverse'},
-    {id: 20, productName: 'MocaOdyssey',image:'/img/mocaverse-5.avif', price: 490,category: 'Mocaverse'},
-  ]};
-
 // Logica para el cambio de la vista de compra y venta
 const container = document.getElementById('container');
 const sellBtn = document.getElementById('sell');
@@ -150,15 +126,15 @@ const ejecutarAccion = (accion) => {
 };
 // Función para ejecutar múltiples acciones
 const ejecutarAcciones = () => {
-  let continuar = true;
-  while (continuar) {
-      let accion = prompt("¿Qué acción desea realizar? (comprar/vender/transferir/terminar)");
-      if (accion.toLowerCase() === "terminar") {
-          continuar = false;
-      } else {
-          ejecutarAccion(accion);
-      }
-  }
+    let continuar = true;
+    while (continuar) {
+        let accion = prompt("¿Qué acción desea realizar? (comprar/vender/transferir/terminar)");
+        if (accion.toLowerCase() === "terminar") {
+            continuar = false;
+        } else {
+            ejecutarAccion(accion);
+        }
+    }
 }
 // Ejecutar la acción seleccionada en DevTools
 // ejecutarAcciones();
@@ -166,17 +142,18 @@ const ejecutarAcciones = () => {
 
 // Pre entrega 02
 // Array de NFTs
-  for (let i of products.data) {
+
+for (let product of products) {
     //Create Card
     let card = document.createElement("div");
     //Card should have category and should stay hidden initially
-    card.classList.add("card", i.category, "hide");
+    card.classList.add("card", product.category, "hide");
     //image div
     let imgContainer = document.createElement("div");
     imgContainer.classList.add("image-container");
     //img tag
     let image = document.createElement("img");
-    image.setAttribute("src", i.image);
+    image.setAttribute("src", product.image);
     imgContainer.appendChild(image);
     card.appendChild(imgContainer);
     //container
@@ -185,51 +162,56 @@ const ejecutarAcciones = () => {
     //product name
     let name = document.createElement("h5");
     name.classList.add("product-name");
-    name.innerText = i.productName.toUpperCase();
+    name.innerText = product.productName.toUpperCase();
     container.appendChild(name);
     //price
-    let price = document.createElement("h6");
-    price.innerText = "$" + i.price;
+    let price = document.createElement("p");
+    price.innerText = "$" + product.price;
     container.appendChild(price);
     card.appendChild(container);
     document.getElementById("products").appendChild(card);
-  }
+    //Add to cart button
+    let button = document.createElement("button");
+    button.innerText = "Add to Cart";
+    button.classList.add("btn-add-cart");
+    card.appendChild(button);
+}
 
-  //parameter passed from button (Parameter same as category)
-  const filtrarProductos = (value) => {
+//parameter passed from button (Parameter same as category)
+const filtrarProductos = (value) => {
     //Button class code
     let buttons = document.querySelectorAll(".button-value");
     buttons.forEach((button) => {
-      //check if value equals innerText
-      if (value.toUpperCase() == button.innerText.toUpperCase()) {
-        button.classList.add("active");
-      } else {
-        button.classList.remove("active");
-      }
+        //check if value equals innerText
+        if (value.toUpperCase() == button.innerText.toUpperCase()) {
+            button.classList.add("active");
+        } else {
+            button.classList.remove("active");
+        }
     });
 
     //select all cards
     let elements = document.querySelectorAll(".card");
     //loop through all cards
     elements.forEach((element) => {
-      //display all cards on 'all' button click
-      if (value == "all") {
-        element.classList.remove("hide");
-      } else {
-        //Check if element contains category class
-        if (element.classList.contains(value)) {
-          //display element based on category
-          element.classList.remove("hide");
+        //display all cards on 'all' button click
+        if (value == "all") {
+            element.classList.remove("hide");
         } else {
-          //hide other elements
-          element.classList.add("hide");
+            //Check if element contains category class
+            if (element.classList.contains(value)) {
+                //display element based on category
+                element.classList.remove("hide");
+            } else {
+                //hide other elements
+                element.classList.add("hide");
+            }
         }
-      }
     });
-  }
+}
 
-  //Search button click
-  document.getElementById("search").addEventListener("click", () => {
+//Search button click
+document.getElementById("search").addEventListener("click", () => {
     //initializations
     let searchInput = document.getElementById("search-input").value;
     let elements = document.querySelectorAll(".product-name");
@@ -237,18 +219,140 @@ const ejecutarAcciones = () => {
 
     //loop through all elements
     elements.forEach((element, index) => {
-      //check if text includes the search value
-      if (element.innerText.includes(searchInput.toUpperCase())) {
-        //display matching card
-        cards[index].classList.remove("hide");
-      } else {
-        //hide others
-        cards[index].classList.add("hide");
-      }
+        //check if text includes the search value
+        if (element.innerText.includes(searchInput.toUpperCase())) {
+            //display matching card
+            cards[index].classList.remove("hide");
+        } else {
+            //hide others
+            cards[index].classList.add("hide");
+        }
     });
-  });
+});
 
-  //Initially display all products
-  window.onload = () => {
+//Initially display all products
+window.onload = () => {
     filtrarProductos("all");
-  };
+};
+
+// Carrito de compras
+const btnCart = document.querySelector('.container-cart-icon');
+const containerCartProducts = document.querySelector('.container-cart-products');
+const cartInfo = document.querySelector('.cart-product');
+const rowProduct = document.querySelector('.row-product');
+// Lista de todos los contenedores de productos
+const productsList = document.querySelector('#products');
+const valorTotal = document.querySelector('.total-pagar');
+const countProducts = document.querySelector('#contador-productos');
+const cartEmpty = document.querySelector('.cart-empty');
+const cartTotal = document.querySelector('.cart-total');
+
+btnCart.addEventListener('click', () => {
+    containerCartProducts.classList.toggle('hidden-cart');
+});
+
+// Variable de arreglos de Productos
+let allProducts = [];
+
+//
+productsList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-add-cart')) {
+        const product = e.target.parentElement;
+
+        const infoProduct = {
+            quantity: 1,
+            title: product.querySelector('h5').textContent,
+            price: product.querySelector('p').textContent,
+        };
+        // console.log(infoProduct);
+        const exists = allProducts.some(product => product.title === infoProduct.title);
+
+        if (exists) {
+            const products = allProducts.map(product => {
+                if (product.title === infoProduct.title) {
+                    product.quantity++;
+                    return product;
+                } else {
+                    return product;
+                }
+            });
+            allProducts = [...products];
+        } else {
+            allProducts = [...allProducts, infoProduct];
+        }
+        showHTML();
+    }
+});
+
+
+
+
+rowProduct.addEventListener('click', (e) => {
+    if (e.target.classList.contains('icon-close')) {
+        const product = e.target.parentElement;
+        const title = product.querySelector('p').textContent;
+
+        allProducts = allProducts.filter(
+            product => product.title !== title
+        );
+        console.log(allProducts);
+
+        showHTML();
+    }
+});
+
+
+// Fx para renderizar en el <HTML></HTML>
+// Funcion para mostrar  HTML
+const showHTML = () => {
+	if (!allProducts.length) {
+		cartEmpty.classList.remove('hiddenCart');
+		rowProduct.classList.add('hiddenCart');
+		cartTotal.classList.add('hiddenCart');
+	} else {
+		cartEmpty.classList.add('hiddenCart');
+		rowProduct.classList.remove('hiddenCart');
+		cartTotal.classList.remove('hiddenCart');
+	}
+
+	// Limpiar HTML
+	rowProduct.innerHTML = '';
+
+	let total = 0;
+	let totalOfProducts = 0;
+
+	allProducts.forEach(product => {
+		const containerProduct = document.createElement('div');
+		containerProduct.classList.add('cart-product');
+
+		containerProduct.innerHTML = `
+            <div class="info-cart-product">
+                <span class="cantidad-producto-carrito">${product.quantity}</span>
+                <p class="titulo-producto-carrito">${product.title}</p>
+                <span class="precio-producto-carrito">${product.price}</span>
+            </div>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon-close"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                />
+            </svg>
+        `;
+
+		rowProduct.append(containerProduct);
+
+		total = total + parseInt(product.quantity * product.price.slice(1));
+		totalOfProducts = totalOfProducts + product.quantity;
+	});
+
+	valorTotal.innerText = `$${total}`;
+	countProducts.innerText = totalOfProducts;
+};
