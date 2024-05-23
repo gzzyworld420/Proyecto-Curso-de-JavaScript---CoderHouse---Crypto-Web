@@ -1,10 +1,19 @@
 // Proyecto: Curso de JavaScript - CoderHouse - Crypto Web
 // Autor: Ignacio Aracena - 2024
-// Logica para el cambio de la vista de compra y venta
+
 const container = document.getElementById('container');
 const sellBtn = document.getElementById('sell');
 const buyBtn = document.getElementById('buy');
-
+// Carrito de compras
+const btnCart = document.querySelector('.container-cart-icon');
+const containerCartProducts = document.querySelector('.container-cart-products');
+const cartInfo = document.querySelector('.cart-product');
+const rowProduct = document.querySelector('.row-product');
+const productsList = document.querySelector('#products');
+const valorTotal = document.querySelector('.total-pagar');
+const countProducts = document.querySelector('#contador-productos');
+const cartEmpty = document.querySelector('.cart-empty');
+const cartTotal = document.querySelector('.cart-total');
 sellBtn.addEventListener('click', () => {
     container.classList.add("active");
 });
@@ -19,7 +28,6 @@ let saldo = 10000;
 let bitcoin = 2;
 let ethereum = 5;
 
-// Función para comprar criptomonedas
 const comprarCriptomoneda = () => {
     let criptomoneda = prompt("Ingrese la criptomoneda que desea comprar (Bitcoin/Ethereum):");
     let cantidad = parseInt(prompt("Ingrese la cantidad que desea comprar:"));
@@ -49,7 +57,6 @@ const comprarCriptomoneda = () => {
     }
 };
 
-// Función para vender criptomonedas
 const venderCriptomoneda = () => {
     let criptomoneda = prompt("Ingrese la criptomoneda que desea vender (Bitcoin/Ethereum):");
     let cantidad = parseInt(prompt("Ingrese la cantidad que desea vender:"));
@@ -84,7 +91,7 @@ const venderCriptomoneda = () => {
         }
     }
 };
-// Función para transferir criptomonedas
+
 const transferirCriptomoneda = () => {
     let criptomoneda = prompt("Ingrese la criptomoneda que desea transferir (Bitcoin/Ethereum):");
     let cantidad = parseInt(prompt("Ingrese la cantidad que desea transferir:"));
@@ -107,7 +114,7 @@ const transferirCriptomoneda = () => {
         console.log("Criptomoneda no válida.");
     }
 };
-// Función para ejecutar una acción seleccionada
+
 const ejecutarAccion = (accion) => {
     switch (accion.trim()) {
         case "comprar":
@@ -124,7 +131,7 @@ const ejecutarAccion = (accion) => {
             break;
     }
 };
-// Función para ejecutar múltiples acciones
+
 const ejecutarAcciones = () => {
     let continuar = true;
     while (continuar) {
@@ -139,10 +146,10 @@ const ejecutarAcciones = () => {
 // Ejecutar la acción seleccionada en DevTools
 // ejecutarAcciones();
 
-
 // Pre entrega 02
-// Array de NFTs
+// Array de objetos de NFTs + Filtrado de busqueda por nombre y categoria
 
+// Recorro el array de productos para crear las cards
 for (let product of products) {
     //Create Card
     let card = document.createElement("div");
@@ -177,7 +184,7 @@ for (let product of products) {
     card.appendChild(button);
 }
 
-//parameter passed from button (Parameter same as category)
+// Fx para filtrar productos por categoria y nombre
 const filtrarProductos = (value) => {
     //Button class code
     let buttons = document.querySelectorAll(".button-value");
@@ -210,7 +217,6 @@ const filtrarProductos = (value) => {
     });
 }
 
-//Search button click
 document.getElementById("search").addEventListener("click", () => {
     //initializations
     let searchInput = document.getElementById("search-input").value;
@@ -230,31 +236,19 @@ document.getElementById("search").addEventListener("click", () => {
     });
 });
 
-//Initially display all products
 window.onload = () => {
     filtrarProductos("all");
 };
 
 // Carrito de compras
-const btnCart = document.querySelector('.container-cart-icon');
-const containerCartProducts = document.querySelector('.container-cart-products');
-const cartInfo = document.querySelector('.cart-product');
-const rowProduct = document.querySelector('.row-product');
-// Lista de todos los contenedores de productos
-const productsList = document.querySelector('#products');
-const valorTotal = document.querySelector('.total-pagar');
-const countProducts = document.querySelector('#contador-productos');
-const cartEmpty = document.querySelector('.cart-empty');
-const cartTotal = document.querySelector('.cart-total');
+let carrito = [];
 
+// Evento para abrir y cerrar el carrito
 btnCart.addEventListener('click', () => {
     containerCartProducts.classList.toggle('hidden-cart');
 });
 
-// Variable de arreglos de Productos
-let allProducts = [];
-
-//
+// Evento para agregar productos al carrito + Mostrar productos en el carrito
 productsList.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-add-cart')) {
         const product = e.target.parentElement;
@@ -265,10 +259,10 @@ productsList.addEventListener('click', (e) => {
             price: product.querySelector('p').textContent,
         };
         // console.log(infoProduct);
-        const exists = allProducts.some(product => product.title === infoProduct.title);
+        const exists = carrito.some(product => product.title === infoProduct.title);
 
         if (exists) {
-            const products = allProducts.map(product => {
+            const products = carrito.map(product => {
                 if (product.title === infoProduct.title) {
                     product.quantity++;
                     return product;
@@ -276,56 +270,50 @@ productsList.addEventListener('click', (e) => {
                     return product;
                 }
             });
-            allProducts = [...products];
+            carrito = [...products];
         } else {
-            allProducts = [...allProducts, infoProduct];
+            carrito = [...carrito, infoProduct];
         }
         showHTML();
     }
 });
 
-
-
-
+// Evento para eliminar productos del carrito + metodo filter para comparar los productos y eliminarlos
 rowProduct.addEventListener('click', (e) => {
     if (e.target.classList.contains('icon-close')) {
         const product = e.target.parentElement;
         const title = product.querySelector('p').textContent;
 
-        allProducts = allProducts.filter(
+        carrito = carrito.filter(
             product => product.title !== title
         );
-        console.log(allProducts);
+        console.log(carrito);
 
         showHTML();
     }
 });
 
-
-// Fx para renderizar en el <HTML></HTML>
-// Funcion para mostrar  HTML
+// Mostrar HTML del carrito + Total de productos y valor total de la compra
 const showHTML = () => {
-	if (!allProducts.length) {
-		cartEmpty.classList.remove('hiddenCart');
-		rowProduct.classList.add('hiddenCart');
-		cartTotal.classList.add('hiddenCart');
-	} else {
-		cartEmpty.classList.add('hiddenCart');
-		rowProduct.classList.remove('hiddenCart');
-		cartTotal.classList.remove('hiddenCart');
-	}
+    if (!carrito.length) {
+        cartEmpty.classList.remove('hiddenCart');
+        rowProduct.classList.add('hiddenCart');
+        cartTotal.classList.add('hiddenCart');
+    } else {
+        cartEmpty.classList.add('hiddenCart');
+        rowProduct.classList.remove('hiddenCart');
+        cartTotal.classList.remove('hiddenCart');
+    }
+    // Limpiar HTML
+    rowProduct.innerHTML = '';
 
-	// Limpiar HTML
-	rowProduct.innerHTML = '';
+    let total = 0;
+    let totalOfProducts = 0;
 
-	let total = 0;
-	let totalOfProducts = 0;
-
-	allProducts.forEach(product => {
-		const containerProduct = document.createElement('div');
-		containerProduct.classList.add('cart-product');
-
-		containerProduct.innerHTML = `
+    carrito.forEach(product => {
+        const containerProduct = document.createElement('div');
+        containerProduct.classList.add('cart-product');
+        containerProduct.innerHTML = `
             <div class="info-cart-product">
                 <span class="cantidad-producto-carrito">${product.quantity}</span>
                 <p class="titulo-producto-carrito">${product.title}</p>
@@ -346,13 +334,11 @@ const showHTML = () => {
                 />
             </svg>
         `;
+        rowProduct.append(containerProduct);
 
-		rowProduct.append(containerProduct);
-
-		total = total + parseInt(product.quantity * product.price.slice(1));
-		totalOfProducts = totalOfProducts + product.quantity;
-	});
-
-	valorTotal.innerText = `$${total}`;
-	countProducts.innerText = totalOfProducts;
+        total = total + parseInt(product.quantity * product.price.slice(1));
+        totalOfProducts = totalOfProducts + product.quantity;
+    });
+    valorTotal.innerText = `$${total}`;
+    countProducts.innerText = totalOfProducts;
 };
