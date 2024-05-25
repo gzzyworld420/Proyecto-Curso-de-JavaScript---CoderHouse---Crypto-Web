@@ -2,158 +2,227 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Styles -->
-  <link rel="stylesheet" href="./styles/styles.css">
-  <!-- Cloudfare -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Favicon -->
-  <title>Crypto & NFTs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="./styles/styles.css">
+
+    <title>NFT Marketplace</title>
 </head>
 
 <body>
-<!-- Header -->
-<header>
-  <h1>NFTs</h1>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                nft marketplace
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Cotizador Crypto</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#nfts" class="nav__link">NFTs</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">NFTs</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">NFTs</a>
+                    </li>
+                </ul>
+                <!-- Close Button -->
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
 
-  <div class="container-icon">
-    <div class="container-cart-icon">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="icon-cart"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-        />
-      </svg>
-      <div class="count-products">
-        <span id="contador-productos">0</span>
-      </div>
-    </div>
+                <!-- Imagen Baner -->
+                <img src="./img/ethereum-img.png" alt="imagen Ethereum" class="nav__img">
+            </div>
 
-    <div class="container-cart-products hidden-cart">
-      <div class="row-product hidden">
-        <div class="cart-product">
-          <div class="info-cart-product">
-            <span class="cantidad-producto-carrito">1</span>
-            <p class="titulo-producto-carrito">Zapatos Nike</p>
-            <span class="precio-producto-carrito">$80</span>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="icon-close"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+            <!-- Toggle Button -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-4-line"></i>
+            </div>
+            <!-- Carrito de Compras -->
+            <div class="container-icon">
+              <div class="container-cart-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="icon-cart"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
+                <div class="count-products">
+                  <span id="contador-productos">0</span>
+                </div>
+              </div>
+
+              <div class="container-cart-products hidden-cart">
+                <div class="row-product hidden">
+                  <div class="cart-product">
+                    <div class="info-cart-product">
+                      <span class="cantidad-producto-carrito">1</span>
+                      <p class="titulo-producto-carrito">Zapatos Nike</p>
+                      <span class="precio-producto-carrito">$80</span>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="icon-close"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="cart-total hidden">
+                  <h3>Total:</h3>
+                  <span class="total-pagar">$200</span>
+                </div>
+                <p class="cart-empty">El carrito está vacío</p>
+              </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home">
+            <div class="home__shape-small"></div>
+            <div class="home__shape-big-1"></div>
+            <div class="home__shape-big-2"></div>
+            <img src="./img/shape-bg.png" alt="" class="home__shape-bg">
+
+            <div class="home__container container">
+                <div class="home__info">
+                    <h1 class="home__title">
+                        <span>Discover</span> <br>
+                        Collect, and <br>
+                        sell NFTs.
+                    </h1>
+                    <p class="home__description">
+                        Explore on the world best largest NFT marketplace.
+                    </p>
+                    <a href="#" class="home__button">EXPLORE</a>
+                </div>
+
+                <div class="home__group">
+                    <div class="home__images">
+                        <div class="home__img-eth">
+                            <img src="./img/ethereum-img.png" alt="ethereum img">
+                        </div>
+                        <div class="home__img-orbe">
+                            <img src="./img/orbe-img.png" alt="ethereum img" class="">
+                        </div>
+                    </div>
+                    <div class="home__data">
+                        <div>
+                            <h2 class="home__data-number">26K+</h2>
+                            <span class="home__data-subtitle">Artwork</span>
+                        </div>
+                        <div>
+                            <h2 class="home__data-number">18K</h2>
+                            <span class="home__data-subtitle">Auction</span>
+                        </div>
+                        <div>
+                            <h2 class="home__data-number">8K</h2>
+                            <span class="home__data-subtitle">Artist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home__footer">
+                    <div>
+                        <span class="home__footer-title">Current bid</span>
+                        <h3 class="home__footer-number">2.00 ETH</h3>
+                        <span class="home__footer-subtitle">$8046.86</span>
+                    </div>
+                    <div>
+                        <span class="home__footer-title">Auction ending in</span>
+
+                        <div class="home__footer-time">
+                            <div class="home__footer-counter">
+                                <h3 class="home__footer-number">06</h3>
+                                <span class="home__footer-subtitle">hours</span>
+                            </div>
+
+                            <div class="home__footer-counter">
+                                <h3 class="home__footer-number">26</h3>
+                                <span class="home__footer-subtitle">minutes</span>
+                            </div>
+
+                            <div class="home__footer-counter">
+                                <h3 class="home__footer-number">50</h3>
+                                <span class="home__footer-subtitle">seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--==================== NFTs + Buscador ====================-->
+        <div class="wrapper" id="nfts">
+            <div id="search-container">
+                <input type="search" id="search-input" placeholder="Search product name here...🔍" />
+                <button id="search">Search</button>
+            </div>
+            <div id="buttons">
+                <button class="button-value" onclick="filtrarProductos('all')">All</button>
+                <button class="button-value" onclick="filtrarProductos('Metaverse')">
+                    Metaverse
+                </button>
+                <button class="button-value" onclick="filtrarProductos('Ape')">
+                    Ape
+                </button>
+                <button class="button-value" onclick="filtrarProductos('Godness')">
+                    Godness
+                </button>
+                <button class="button-value" onclick="filtrarProductos('Mocaverse')">
+                    Mocaverse
+                </button>
+            </div>
+
+            <div id="products">
+                <!-- array de productos -->
+            </div>
         </div>
-      </div>
+    </main>
 
-      <div class="cart-total hidden">
-        <h3>Total:</h3>
-        <span class="total-pagar">$200</span>
-      </div>
-      <p class="cart-empty">El carrito está vacío</p>
-    </div>
-  </div>
-</header>
-  <!-- Main -->
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="./js/scrollreveal.min.js"></script>
+    <!--=============== MAIN JS ===============-->
+    <script defer src="./js/app.js"></script>
+    <!--=============== MAIN JS ===============-->
+    <script src="./js/productos.js"></script>
 
-  <main>
-    <div class="container" id="container">
-      <div class="form-container sign-up">
-        <form>
-          <h1>Sell Crypto</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-          <input type="number" placeholder="Spend">
-          <input type="" placeholder="Receive">
-          <button>Sell</button>
-        </form>
-      </div>
-      <div class="form-container sign-in">
-        <form>
-          <h1>Buy Crypto</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-          <span></span>
-          <input type="" placeholder="Spend">
-          <input type="" placeholder="Receive">
-          <button>Buy</button>
-        </form>
-      </div>
-      <div class="toggle-container">
-        <div class="toggle">
-          <div class="toggle-panel toggle-left">
-            <h1>Simple & Secure</h1>
-            <p>Get up to 100 USDT in rewards.</p>
-            <button class="hidden" id="buy">Buy crypto</button>
-          </div>
-          <div class="toggle-panel toggle-right">
-            <h1>USERS
-              TRUST US</h1>
-            <p>Trade on the go. Anywhere, anytime.</p>
-            <button class="hidden" id="sell">Sell Crypto</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <p>Ejecuta <strong>DevTools</strong>, y escribe en la consola JS la función: <strong>ejecutarAcciones()</strong></p>
-    <!-- NFTS + Buscador -->
-    <div class="wrapper">
-      <div id="search-container">
-        <input type="search" id="search-input" placeholder="Search product name here...🔍" />
-        <button id="search">Search</button>
-      </div>
-      <div id="buttons">
-        <button class="button-value" onclick="filtrarProductos('all')">All</button>
-        <button class="button-value" onclick="filtrarProductos('Ape')">
-          Ape
-        </button>
-        <button class="button-value" onclick="filtrarProductos('Metaverse')">
-          Metaverse
-        </button>
-        <button class="button-value" onclick="filtrarProductos('Godness')">
-          Godness
-        </button>
-        <button class="button-value" onclick="filtrarProductos('Mocaverse')">
-          Mocaverse
-        </button>
-      </div>
-
-      <div id="products">
-        <!-- array de productos -->
-      </div>
-    </div>
-  </main>
-
-
-  <!-- Scripts -->
-  <script defer src="./js/app.js"></script>
-  <script src="./js/productos.js"></script>
 </body>
 
 </html>
